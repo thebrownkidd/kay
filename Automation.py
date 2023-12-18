@@ -9,27 +9,12 @@ def webop(site):
     webbrowser.open("http://www."+site+".com")
     
 def searchop(fil,folder):
-    global f2
-    global f3
-    f2 = "aa sun"
-    try:
-        for f in os.listdir(folder):
-            print(folder+f)
-            if f2 == (fil+".exe"):
-                break    
-            else:
-                f2 = f
-                if os.path.isfile(folder + f):
-                    if f == (fil + ".exe"):
-                        print("milgya " + folder + f)
-                        f3 = folder + f
-                        f3 = f3.replace("\\","/")
-                        subprocess.call(f3)
-                    else:
-                        searchop(fil,folder + f + "\\")
-    except:
-        pass
-
+        fsearch(fil,folder)
+        print("this is location: "+ location)
+        f3 = location.replace("\\","/")
+        print("this is f3 :" + f3)
+        subprocess.call(f3)
+# cant use global variables in functions. find a fix
 def fsearch(file, folder):
     global f2
     f2 = "bruh idk"
@@ -43,14 +28,15 @@ def fsearch(file, folder):
                 if os.path.isfile(folder+f):
                     if f == file:
                         print("\n\nFound it at: "+folder+file+"\n\n")
+                        global location = 
                 else:
                     fsearch(file,folder+f+"\\")
         except:
             pass
 def auto(a):
     if a[1] == "run":
-        searchop(a[2],"C:\\")
+        searchop(a[2]+".exe","C:\\")
     elif a[1] == "visit":
         webop(a[2])
     elif a[1] == "search":
-        fsearch(a[2],"C:\\")
+        fsearch(a[2]+".exe","C:\\")
