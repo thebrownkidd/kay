@@ -1,0 +1,68 @@
+import subprocess
+import os
+import string
+import webbrowser
+import json
+
+filoc = {}
+count = 0
+def webop(site):
+    webbrowser.open("http://www."+site+".com")
+    
+def searchop(fil,folder):
+srchloc = fsearch(fil,folder)
+    srchloc.replace("\\","/")
+    subprocess.call(srchloc)
+def filsearch(file):
+    locobj = open('localloc.txt','r')
+    filjs = locobj.read()
+    filoc = json.loads(filjs)
+    key = filoc.keys()
+    for x in key:
+        if x == file:
+            count = 1
+            return filoc[file]
+        
+def localsearch(file, folder):
+    global f2
+    f2 = "bruh idk"
+    print("Searching in: "+ folder)
+    for f in os.listdir(folder):
+        try:
+            if f2 == file:
+                break
+            else:
+                f2 = f
+                if os.path.isfile(folder+f):
+                    if f == file:
+                        print("\n\nFound it at: "+folder+file+"\n\n")
+                        locate = folder+file
+                        return(locate)
+                else:
+                    fsearch(file,folder+f+"\\")
+        except:
+            pass
+
+def fsearch(file,folder):
+    location = filsearch(file)
+    if(count !=  0):
+        print("found it at: ",location)
+        return(location)
+    else:
+        location = localsearch(file,folder)
+        filobj = open('localloc','r')
+        dict = json.loads(filobj.read())
+        dict[file] = location
+        filobj.close()
+        objfil = open('localloc','w')
+        objfil.write(json.dumps(dict))
+        objfil.close()
+        print("found it at: ",location)
+        return (location)
+def auto(a):
+    if a[1] == "run":
+        searchop(a[2],"C:\\")
+    elif a[1] == "visit":
+        webop(a[2])
+    elif a[1] == "search":
+        fsearch(a[2],"C:\\")
