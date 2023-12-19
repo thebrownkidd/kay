@@ -1,1 +1,1 @@
-{"FL64.exe": "C:/Program Files/FL64.exe", "opera.exe": "C:\\Users\\arpit\\AppData\\Local\\Programs\\Opera\\105.0.4970.34\\opera.exe"}
+{"FL.exe": "C:/Program Files/FL64.exe", "opera.exe": "C:\\Users\\arpit\\AppData\\Local\\Programs\\Opera\\105.0.4970.34\\opera.exe"}
