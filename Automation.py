@@ -10,12 +10,13 @@ def webop(site):
     
 def searchop(fil,folder):
         fsearch(fil,folder)
-        f3 = locat.replace("\\","/")
+        print("this is location: "+ location)
+        f3 = location.replace("\\","/")
+        print("this is f3 :" + f3)
         subprocess.call(f3)
 # cant use global variables in functions. find a fix
 def fsearch(file, folder):
     global f2
-    global locat
     f2 = "bruh idk"
     print("Searching in: "+ folder)
     for f in os.listdir(folder):
@@ -27,7 +28,7 @@ def fsearch(file, folder):
                 if os.path.isfile(folder+f):
                     if f == file:
                         print("\n\nFound it at: "+folder+file+"\n\n")
-                        locat = folder+file
+                        global location = 
                 else:
                     fsearch(file,folder+f+"\\")
         except:
